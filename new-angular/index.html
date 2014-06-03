@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="root">
+	<head>
+		<link rel="stylesheet" type="text/css" href="css\stylesheet.css">
+		<link href="css\bootstrap.css" rel="stylesheet" type="text\css">
+		<script type="text/javascript" src="angular.min.js"></script>
+		<script src ="javaScript/script.js" type="text/javascript"></script>
+
+		
+	</head>
+	<body ng-controller="myAppCtr" >
+		
+		<div id="header" ng-controller= "index">
+			{{message}}	
+		</div>
+
+		<!-- <div>
+			2<br>
+			Name:<input ng-model="name" type="text"/>
+			Hello {{name}}	
+		</div> -->
+		<div id="left-column">
+			<div class="left-column-row">
+				<form >
+					Show list<input ng-model="click1" id="open-list-button" type="checkbox" value=">">
+				</form>	 
+			</div>
+			<div class="left-column-row">
+				<form >
+					add contact<input ng-model="click2" id="plus-button" type="checkbox" value="+">
+				</form>	
+			</div>	
+		</div>
+
+		<div id="list-column" ng-show="click1">
+			<ul  >	
+				<input id="search"  ng-model="query" type="text" placeholder= "Search"/>
+				<li class="person-templet" ng-repeat= "person in persons | orderBy:'firstName' | filter:query" >
+					<span class="display-list">
+						{{person.firstName}} <strong> {{person.lastName}} </strong>
+						<a href="" class="remove" ng-click="removePerson(person)">remove</a>
+					</span>
+				</li>	
+			</ul>
+		</div>
+
+		<div id= "add-person" ng-show="click2" >
+			<h1>Add-Person</h1><br>
+			<form ng-submit= "addPerson()">
+				 <table >
+					<tr>
+						<td>Name:</td> <td><input type="text" ng-model="firstName"></td>
+					</tr>
+					<tr>
+						<td>last-name:</td><td><input type="text" ng-model="lastName"></td>
+					</tr>
+					<tr>
+						<td>phone:</td><td><input type="text" ng-model="phone" ></td>
+					</tr>
+					<tr>
+						<td>address:</td><td><input type="text" ng-model="address"></td>
+					</tr>
+				</table>
+
+				<input type="submit" value="add">
+			</form>
+		</div>
+		
+	</body>
+</html>
